@@ -1,0 +1,16 @@
+%style{:type => "text/css"}
+  :sass
+    div 
+      color: red 
+
+#photo
+  = image_tag(@main_image)
+
+#title
+  = @title
+
+#content
+  - @paragraphs.each do |paragraph|
+    .paragraph
+      = paragraph
+
