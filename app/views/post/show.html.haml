@@ -1,0 +1,11 @@
+#photo
+  = image_tag(@main_image)
+
+#title
+  = @title
+
+#content
+  - @paragraphs.each do |paragraph|
+    .paragraph
+      = paragraph
+
