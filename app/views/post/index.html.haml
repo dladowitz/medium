@@ -6,19 +6,17 @@
 
 #content
   - @posts.each do |post|
-    .posts
-      - slug = "somewhere"
-      - @collections.each do |collection| 
-        - if collection[0] == post["homeCollectionId"]
-          - slug = collection[1]["slug"]
-
-      .post_title
-        = link_to(post["title"], post_show_path + "?collection_name=" + slug + "&post_id=" + post["id"])
-      .post_subtitle
-        = post["virtuals"]["snippet"] 
-
-/ #content
-/   - @paragraphs.each do |paragraph|
-/     .paragraph
-/       = paragraph
+    .post
+      .text
+        - set_post_info(post)
+        .post_title
+          = link_to(post["title"], "#{post_show_path}?collection_name=#{@slug}&post_id=#{post["id"]}")
+        .post_subtitle
+          = post["virtuals"]["snippet"]
+        .post_author
+          = "by #{@author_name}"
+          - unless @collection_name.empty?
+            = " in #{@collection_name}"
+      .author_image
+        = image_tag("#{PostController::CLOUDFRONT_URL}/fit/c/100/100/#{@author_image}")
 
